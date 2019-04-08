@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="zhetianPage.css">
+    <title>Document</title>
+    <style>
+        .on{background-image:url("/img/xz_st.png") }
+    </style>
+</head>
+<body>
+        <div class="main">
+                <div class="content">
+<div class="area">
+    <div class="content">
+        <ul>
+            <li>
+                <img src="img/jsjs_hd.png" >
+            </li>
+            <li>
+                <img src="img/jsjs_st.png" >
+            </li>
+            <li>
+                <img src="img/jsjs_ty.png" >
+            </li>
+            <li>
+                <img src="img/jsjs_yl.png" >
+            </li>
+        </ul>
+    </div>
+    <div class="tab">
+        <a href="javascript:;" class="on">混沌</a>
+        <a href="javascript:;">圣体</a>
+        <a href="javascript:;">天妖</a>
+        <a href="javascript:;">元灵</a>
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script src="jquery-3.1.0.min.js"></script>
+<script src="rem.js"></script>
+<script>
+$(document).ready(function(){
+$(".area .tab a").mouseover(function(){
+    $(this).addClass('on').siblings().removeClass('on');
+    var indexs = $(this).index();
+    numbers = indexs;
+    $('.area .content li').hide();
+    $('.area .content li:eq('+indexs+')').show();
+});
+
+var autos = 1;  //等于1则自动切换，其他任意数字则不自动切换
+if(autos ==1){
+    var numbers = 0;
+    var maxNumbers = $('.area .tab a').length;
+    function autotab(){
+        numbers++;
+        numbers == maxNumbers? numbers = 0 : numbers;
+        $('.area .tab a:eq('+numbers+')').addClass('on').siblings().removeClass('on');
+        $('.area .content ul li:eq('+numbers+')').show().siblings().hide();
+    }
+    var tabChanges = setInterval(autotab,1000);
+    //鼠标悬停暂停切换
+    $('.area').mouseover(function(){
+        clearInterval(tabChanges);
+    });
+    $('.area').mouseout(function(){
+        tabChanges = setInterval(autotab,1000);
+    });
+}
+});
+</script>
+</html>
